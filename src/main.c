@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "uvisual_window.h"
+#include "GL/gl.h"
 
 int main(int argc, char **argv)
 {
@@ -22,9 +24,24 @@ int main(int argc, char **argv)
 		puts("Window not created");
 		return -1;
 	}
+	glViewport(0, 0, 680, 400);
+	SDL_Delay(1.0);
+	bool quit = false;
+	while (quit == false)
+	{
+		SDL_Event event;
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+			{
+				quit = true;
+			}
+		}
 
-	SDL_Delay(2000);
-
+		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		uvisual_window_render(win);
+	}
 	uvisual_window_delete(win);
 
 	uvisual_quit();

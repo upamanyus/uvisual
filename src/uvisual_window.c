@@ -75,3 +75,9 @@ uvisual_window_delete(window_t *win)
 	SDL_DestroyWindow(win->sdl_window);
 	free(win);
 }
+
+void
+uvisual_window_render(window_t *win)
+{
+	SDL_GL_SwapWindow(win->sdl_window);
+}

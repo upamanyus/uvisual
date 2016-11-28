@@ -8,6 +8,8 @@ Mesh type to handle all 3D models (use element buffers)
 
 Get a triangle to render via a mesh
 
+Figure out how everything will be documented
+
 Cube
 
 Sphere (maybe smooth out a subdivided cube?)

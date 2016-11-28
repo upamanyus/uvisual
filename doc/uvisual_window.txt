@@ -1,0 +1,31 @@
+The `window` struct (uvisual_window.h:7) holds everything necessary to create an
+OpenGL window through SDL.
+
+int uvisual_initialize():
+	This initializes the SDL systems required for uvisual. This should be
+	called before any other uvisual functions to create and manipulate
+	windows are called.
+
+void uvisual_quit():
+	This will quit all of the SDL systems started by uvisual_initialize().
+	This should be called once the user no longer wants any uvisual
+	functionality.
+
+window_t* uvisual_window_create(const char *window_title,
+                                int x,
+                                int y,
+                                int w,
+                                int h):
+	This function creates a window with the given title, position (x, y),
+	width w and height h. The specification of (x, y) is exactly the same as
+	given to SDL_CreateWindow. In particular, the user can pass in
+	`SDL_WINDOWPOS_UNDEFIED`.
+
+void uvisual_window_delete(window_t *win):
+	This will free up the memory allocated for win, and close the SDL
+	Window.
+
+void uvisual_window_render(window_t *win):
+	This will swap the front and back buffers of the given window. This
+	should be called to update the display after all of the glDraw*() calls
+	have been made for this frame.
