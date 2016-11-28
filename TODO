@@ -1,0 +1,17 @@
+Finish window system so the program can enter a main loop
+
+Logging system (errors, warnings, info)
+
+Load opengl shaders
+
+Mesh type to handle all 3D models (use element buffers)
+
+Get a triangle to render via a mesh
+
+Cube
+
+Sphere (maybe smooth out a subdivided cube?)
+
+Multithreading to allow multiple windows(?)
+
+Check to see how cross platform the setup is

@@ -1,27 +1,33 @@
 #include <stdio.h>
-#include <SDL2/SDL.h>
+#include "uvisual_window.h"
 
 int main(int argc, char **argv)
 {
 	puts("Initializing SDL system");
-	int res = 0;
-	res = SDL_Init(SDL_INIT_VIDEO);
-	if (res == -1)
+	int ret;
+	ret = uvisual_initialize();
+	if (ret < 0)
 	{
-		puts("[ERROR]: Unable to initialize SDL");
-		return 1;
+		return -1;
 	}
-	SDL_Window *window = SDL_CreateWindow("SDL Window", 0, 0, 600, 400, 0);
-	if (window == NULL)
+
+	window_t *win = uvisual_window_create("Hello, world!",
+	                                      SDL_WINDOWPOS_UNDEFINED,
+	                                      SDL_WINDOWPOS_UNDEFINED,
+	                                      680,
+	                                      400
+	                                      );
+	if (win == NULL)
 	{
-		puts("[ERROR]: Unable to create SDL window");
-		SDL_Quit();
-		return 2;
+		puts("Window not created");
+		return -1;
 	}
 
 	SDL_Delay(2000);
 
-	SDL_Quit();
+	uvisual_window_delete(win);
+
+	uvisual_quit();
 	puts("Quitting");
 	return 0;
 }

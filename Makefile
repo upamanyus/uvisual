@@ -1,9 +1,10 @@
 # Variables
 CC=gcc
 CFLAGS=-Wall -Wpedantic -std=c11
-LDFLAGS=-lGL -lSDL2
+LDFLAGS=-lGLEW -lGL -lSDL2
 
 SRC_DIR=./src
+INCLUDE_DIR=./include
 BUILD_DIR=./build
 BIN_DIR=./bin
 
@@ -27,11 +28,12 @@ $(BIN_DIR)/$(NAME): $(OBJS) | $(BIN_DIR)
 $(OBJS): | $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) -I $(INCLUDE_DIR) $< -o $@
 
 .PHONY: clean
 clean:
-	rm -rf $(BUILD_DIR)/*.o
+	rm -f $(OBJS)
+	rm -f $(BIN_DIR)/$(NAME)
 
 # Make sure the directory structure is as it should be
 $(BUILD_DIR):
